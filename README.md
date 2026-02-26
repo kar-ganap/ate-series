@@ -10,6 +10,13 @@ across three software engineering task domains.
 > hub-and-spoke subagents — and what structural conditions must hold for the
 > advantage to emerge?
 
+## Motivation
+
+Anthropic demonstrated that [teams of Claude instances can build a 100K-line C
+compiler autonomously](https://www.anthropic.com/engineering/building-c-compiler).
+This series asks: under what structural conditions do agent teams actually
+outperform single agents — and when is it just parallelism?
+
 ## The Three Experiments
 
 | | [ate](https://github.com/kar-ganap/ate) | [ate-features](https://github.com/kar-ganap/ate-features) | [ate-arch](https://github.com/kar-ganap/ate-arch) |
@@ -99,6 +106,11 @@ All three experiments share:
 - **North star design**: `docs/experiment-design.md` in each repo
 - **Raw data preservation**: Transcripts and scores committed, never modified
 - **Python + uv**: Pydantic models, Typer CLI, pytest, ruff, mypy strict
+
+## Built On
+
+- [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview) — agentic coding tool
+- [Agent Teams & Subagents](https://docs.anthropic.com/en/docs/claude-code/sub-agents) — the multi-agent infrastructure under study
 
 ## Repository Links
 
