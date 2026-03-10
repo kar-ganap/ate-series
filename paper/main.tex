@@ -112,7 +112,7 @@ collaboration. Two independent evaluation methods (a rubric-based assessment
 and a blind architectural review) converge on the treatment advantage while
 measuring complementary qualities. Information asymmetry, not task
 difficulty, is the structural condition that determines whether multi-agent
-coordination improves output quality beyond parallelism.
+coordination improves output quality beyond parallelism.\footnote{Code, data, and experiment protocols: \url{https://github.com/kar-ganap/ate-series}}
 \end{abstract}
 
 %═══════════════════════════════════════════════════════════════════
@@ -1069,6 +1069,13 @@ and domains, increase sample sizes to achieve adequate power for
 interaction tests, introduce structured deliberation protocols to
 test whether explicit peer communication unlocks additional quality
 gains, and conduct human evaluation to rule out LLM-as-judge bias.
+Beyond the two-agent case studied here, a natural extension is to
+deeper agent hierarchies (sub-leads dispatching workers) and hybrid
+topologies (peers within clusters, hub-and-spoke between clusters),
+testing whether the information asymmetry mechanism scales or whether
+coordination overhead eventually dominates. Varying agent count
+(4, 8, 16) would clarify how the treatment effect interacts with the
+surface area of partition boundaries.
 The information asymmetry hypothesis---that it is the distribution
 of information, not the difficulty of the task, that determines
 whether multi-agent coordination improves quality---provides a
