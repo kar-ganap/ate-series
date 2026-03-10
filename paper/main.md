@@ -293,7 +293,7 @@ Relay transparency analysis supports this interpretation. Embedding similarity b
 | Treatment-A | 14.6 ± 3.3     | 16.4 ± 5.8    | 6.8 ± 3.8    | 2.1 ± 0.4    |
 | Treatment-C | 15.6 ± 1.8     | 16.6 ± 4.7    | 5.8 ± 2.7    | 2.3 ± 0.5    |
 
-Treatment runs take 60--75% longer and involve roughly twice the stakeholder interviews. This additional process is the mechanism, not a confound: the peer topology enables a deeper exploration process (discovery → relay → informed follow-up → synthesis) that the hub-and-spoke architecture structurally cannot support.
+Treatment runs take 60--75% longer and involve roughly twice the stakeholder interviews. This additional process is the mechanism, not a confound: the peer topology enables a deeper exploration process (discovery → relay → informed follow-up → synthesis) that the hub-and-spoke architecture structurally cannot support. Crucially, additional time alone cannot replicate this process under hub-and-spoke: subagents terminate after returning reports, so the lead cannot dispatch informed follow-up interviews---it can only re-dispatch fresh subagents that lack the other agent's context.
 
 The implication for multi-agent system design is that *channel availability does not guarantee channel use*. Agents never spontaneously adopt lateral communication. The advantage comes from the topology's architectural properties, not from emergent collaborative behavior.
 
