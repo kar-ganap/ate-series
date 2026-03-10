@@ -53,7 +53,7 @@ The agent model for all experiments is Claude Opus 4.6. Stakeholder simulation (
 
 ## 3. Preliminary Experiments
 
-Before designing the primary experiment, we conducted two preliminary studies on real-world software engineering tasks to test whether peer agents outperform subagents on code-level work. Both tasks were drawn from active open-source projects, and all patches were verified against existing test suites.
+Before designing the primary experiment, we conducted two preliminary studies on real-world software engineering tasks to test whether peer agents outperform subagents on code-level work. Both tasks were drawn from active open-source projects, and all patches were verified against existing test suites (Table 1).
 
 **Experiment 1: Bug-fixing.** Eight bugs from the Ruff Python linter (Rust, 500K+ LOC) were selected from GitHub issues confirmed unfixed at a pinned commit. Three treatment conditions were executed across all eight bugs (*n* = 24 runs total): single-agent control, hub-and-spoke subagents, and symmetric peer agents. Every treatment achieved a perfect 8/8 solve rate. Zero peer-to-peer messages were observed. The peer topology provided a 5.2x wall-clock speedup through parallelism, but no quality improvement.
 
@@ -78,7 +78,7 @@ The pattern across both experiments is consistent: when every agent has full acc
 
 ### 4.1 Research Question and Hypotheses
 
-The preliminary experiments suggest that multi-agent quality advantage requires a structural condition absent in code-level tasks. We hypothesize that this condition is *information asymmetry*: when agents hold non-overlapping information, cross-agent communication becomes necessary (not merely available) for high-quality synthesis.
+The preliminary experiments suggest that multi-agent quality advantage requires a structural condition absent in code-level tasks. Experiment 3 tests this hypothesis directly. We hypothesize that this condition is *information asymmetry*: when agents hold non-overlapping information, cross-agent communication becomes necessary (not merely available) for high-quality synthesis.
 
 **H1 (Architecture effect):** When agents can only access disjoint subsets of stakeholders, peer agents produce higher-quality architecture documents than hub-and-spoke subagents.
 
@@ -88,7 +88,7 @@ The preliminary experiments suggest that multi-agent quality advantage requires 
 
 ### 4.2 Domain: Architecture Design with Simulated Stakeholders
 
-We designed a scenario ("DataFlow Corp") in which a company must build a multi-region data platform spanning the US, EU, and APAC. Six stakeholders hold private constraint sheets containing hard constraints, preferences, and hidden dependencies. Stakeholders are simulated by Claude Haiku 4.5 (temperature 0.2) and do not volunteer information unprompted---agents must ask specific questions to elicit requirements.
+We designed a scenario ("DataFlow Corp") in which a company must build a multi-region data platform spanning the US, EU, and APAC. Six stakeholders (Table 2) hold private constraint sheets containing hard constraints, preferences, and hidden dependencies. Stakeholders are simulated by Claude Haiku 4.5 (temperature 0.2) and do not volunteer information unprompted---agents must ask specific questions to elicit requirements.
 
 The scenario contains 8 conflicts arising from genuine tensions between stakeholders (e.g., encryption requirements vs. latency SLAs, compliance timelines vs. batch processing windows) and 4 hidden dependencies that are only revealed when agents ask sufficiently targeted questions.
 
@@ -107,7 +107,7 @@ This domain breaks the ceiling observed in Experiments 1--2 because: (a) solutio
 
 ### 4.3 Architecture Conditions
 
-Both conditions use two agents plus a coordinator/lead. The structural difference is how cross-agent information flows.
+Both conditions use two agents plus a coordinator/lead (Figure 1). The structural difference is how cross-agent information flows.
 
 **Control (hub-and-spoke):** The lead agent dispatches subagents via the Task tool. Each subagent interviews its assigned stakeholders, returns a report, and terminates. The lead cannot interview stakeholders directly---it must synthesize from subagent reports alone. Cross-partition information flows serially: Agent 1 → Lead → Agent 2 → Lead → synthesis.
 
@@ -117,7 +117,7 @@ Both conditions use two agents plus a coordinator/lead. The structural differenc
 
 ### 4.4 Partition Conditions
 
-The six stakeholders form a conflict graph with natural clusters. By reassigning stakeholders across the agent boundary, we vary how many of the 8 conflicts require cross-agent information.
+The six stakeholders form a conflict graph with natural clusters (Figure 2). By reassigning stakeholders across the agent boundary, we vary how many of the 8 conflicts require cross-agent information.
 
 **Partition A** (low cross-dependency): Agent 1 receives {Security Officer, Compliance Lead, EU Ops}; Agent 2 receives {APAC Ops, Platform Architect, Product Manager}. This yields 6 within-partition and 2 cross-partition conflicts (75/25 split). Most conflicts are resolvable by one agent alone.
 
@@ -139,7 +139,7 @@ Partition B (50/50) was designed but omitted after piloting: with *n* = 8 per ce
 | Treatment-C | Symmetric peers  | C         | 2/6 (25%/75%)      | 8  |
 | **Total**   |                  |           |                     | **32** |
 
-All 32 runs were conducted as interactive Claude Code sessions using Claude Opus 4.6 as the agent model. A 30-minute soft time cap was applied. Each run was self-contained with no cumulative state. Runs were executed under a Claude Max subscription ($0 marginal API cost for agent sessions); stakeholder simulation costs totaled approximately $1--2.
+Table 3 summarizes the experimental matrix. All 32 runs were conducted as interactive Claude Code sessions using Claude Opus 4.6 as the agent model. A 30-minute soft time cap was applied. Each run was self-contained with no cumulative state. Runs were executed under a Claude Max subscription ($0 marginal API cost for agent sessions); stakeholder simulation costs totaled approximately $1--2.
 
 ---
 
@@ -211,7 +211,7 @@ Table 4 reports the architecture main effect (Treatment vs. Control, pooled acro
 
 \* *p* < 0.05; † *p* < 0.10
 
-L1 (Constraint Discovery) shows a ceiling in all four cells (≥ 0.98), confirming that both topologies effectively elicit basic stakeholder requirements. This L1 ceiling serves as a manipulation check: both topologies successfully extract stakeholder information, confirming that differences in L2--L4 arise from how agents *synthesize* across stakeholders, not from differential information access. The treatment advantage concentrates in L2--L4: the layers that require cross-stakeholder information synthesis. The largest effect is in L3 (Resolution Quality, *d* = +1.04, *p* = 0.011)---the most demanding layer, requiring agents to synthesize conflicting requirements into a coherent architectural resolution. The widest pairwise contrast, Control-A vs. Treatment-C, yields *d* = +1.67 (composite) and *d* = +2.13 (L3)---the full range of the experimental design from lowest information asymmetry with hub-and-spoke to highest information asymmetry with peer agents.
+L1 (Constraint Discovery) shows a ceiling in all four cells (≥ 0.98), confirming that both topologies effectively elicit basic stakeholder requirements. This L1 ceiling serves as a manipulation check: both topologies successfully extract stakeholder information, confirming that differences in L2--L4 arise from how agents *synthesize* across stakeholders, not from differential information access. The treatment advantage concentrates in L2--L4 (Figure 4): the layers that require cross-stakeholder information synthesis. The largest effect is in L3 (Resolution Quality, *d* = +1.04, *p* = 0.011)---the most demanding layer, requiring agents to synthesize conflicting requirements into a coherent architectural resolution. The widest pairwise contrast, Control-A vs. Treatment-C, yields *d* = +1.67 (composite) and *d* = +2.13 (L3)---the full range of the experimental design from lowest information asymmetry with hub-and-spoke to highest information asymmetry with peer agents.
 
 *Figure 3: Composite score distributions by experimental cell. Treatment conditions consistently outperform their control counterparts, with the largest separation in Partition C.*
 
@@ -229,7 +229,7 @@ Table 5 decomposes the treatment effect by partition condition. If information a
 
 Interaction *p* from 100,000-permutation test. † *p* < 0.15, directionally consistent with H2.
 
-The L3 dose-response pattern is striking: the treatment advantage for resolution quality is 3.5x larger in Partition C (+0.36) than in Partition A (+0.10). The interaction term (*p* = 0.129) does not reach conventional significance at *n* = 8 per cell, but the gradient is monotonic and directionally consistent with H2. Power analysis suggests *n* ≈ 12--16 per cell would be needed to detect this interaction at α = 0.05.
+The L3 dose-response pattern is striking (Figure 5): the treatment advantage for resolution quality is 3.5x larger in Partition C (+0.36) than in Partition A (+0.10). The interaction term (*p* = 0.129) does not reach conventional significance at *n* = 8 per cell, but the gradient is monotonic and directionally consistent with H2. Power analysis suggests *n* ≈ 12--16 per cell would be needed to detect this interaction at α = 0.05.
 
 L2 (Conflict Identification) shows a *flat* gradient: the treatment advantage for identifying conflicts is similar regardless of partition. This is consistent with the mechanism---both topologies can identify conflicts, but *resolving* cross-partition conflicts specifically benefits from the peer topology's information flow.
 
@@ -237,7 +237,7 @@ L2 (Conflict Identification) shows a *flat* gradient: the treatment advantage fo
 
 ### 6.3 Resolution Quality Breakdown
 
-Treatment-C achieves L3 ≥ 0.88 in 5 of 8 runs, a level of resolution quality never observed in any other cell (except a single outlier, Control-C-7, at 1.00). Treatment-C runs 1--3 average 7.0 *Optimal* resolutions out of 8 conflicts, compared to 1--2 *Optimal* in Control cells.
+Figure 6 shows the per-run L3 scores. Treatment-C achieves L3 ≥ 0.88 in 5 of 8 runs, a level of resolution quality never observed in any other cell (except a single outlier, Control-C-7, at 1.00). Treatment-C runs 1--3 average 7.0 *Optimal* resolutions out of 8 conflicts, compared to 1--2 *Optimal* in Control cells.
 
 Treatment-C also exhibits the highest variance (SD 0.27 on L3). When peer coordination works well, it works exceptionally (L3 ≥ 0.88 in 5/8 runs). When it fails, output degrades below the control floor (runs 4--5: L3 = 0.67 and 0.21). The hub-and-spoke topology trades ceiling for consistency.
 
@@ -245,7 +245,7 @@ Treatment-C also exhibits the highest variance (SD 0.27 on L3). When peer coordi
 
 ### 6.4 Blind Architectural Review
 
-The blind review confirms the rubric's direction. Treatment documents score 23.9 ± 2.2 out of 30, compared to 22.3 ± 1.2 for control (Δ = +1.7).
+The blind review confirms the rubric's direction (Table 6). Treatment documents score 23.9 ± 2.2 out of 30, compared to 22.3 ± 1.2 for control (Δ = +1.7).
 
 **Table 6. Blind review per-dimension means (1--5 scale).**
 
@@ -262,7 +262,7 @@ The treatment advantage concentrates in three dimensions: *Specificity* (+0.75)-
 
 ### 6.5 Cross-Validation of Evaluation Methods
 
-The rubric and blind review measure different qualities and pick different individual champions in three of four cells. For example, Control-C-7 achieves a perfect rubric composite of 1.00 (every conflict identified and optimally resolved) but scores only 22/30 on the blind review---a checklist-compliant document that lacks engineering specificity. Conversely, Treatment-C-4 scores 0.79 on the rubric but achieves 27/30 on the blind review (tied highest in the experiment)---a detailed, buildable document that the rubric undervalues because its strength lies in dimensions the rubric does not capture.
+The rubric and blind review measure different qualities and pick different individual champions in three of four cells (Figure 7). For example, Control-C-7 achieves a perfect rubric composite of 1.00 (every conflict identified and optimally resolved) but scores only 22/30 on the blind review---a checklist-compliant document that lacks engineering specificity. Conversely, Treatment-C-4 scores 0.79 on the rubric but achieves 27/30 on the blind review (tied highest in the experiment)---a detailed, buildable document that the rubric undervalues because its strength lies in dimensions the rubric does not capture.
 
 Both methods agree that Treatment-C is the best cell and Control-A is the worst. This convergence on direction, combined with divergence on individual rankings, strengthens confidence that the treatment effect is not an artifact of either evaluation method.
 
