@@ -113,6 +113,12 @@ All three experiments share:
 - [Agent Teams](https://code.claude.com/docs/en/agent-teams) — multi-agent collaboration feature under study
 - [Subagents](https://code.claude.com/docs/en/sub-agents) — the default hub-and-spoke delegation mechanism
 
+## Paper
+
+The full write-up is in [`paper/`](paper/): 15-page preprint covering all three
+experiments, statistical analysis, and a dual-evaluation methodology
+(rubric-based + blind architectural review).
+
 ## Repository Links
 
 | Repo | Description | Status |
