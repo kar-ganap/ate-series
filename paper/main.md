@@ -241,7 +241,7 @@ Figure 6 shows the per-run L3 scores. Treatment-C achieves L3 ≥ 0.88 in 5 of 8
 
 Treatment-C also exhibits the highest variance (SD 0.27 on L3). When peer coordination works well, it works exceptionally (L3 ≥ 0.88 in 5/8 runs). One run (Treatment-C-5, L3 = 0.21) is a clear failure---four of eight conflicts scored "missing"---falling well below both control means (Control-A: 0.37, Control-C: 0.44). The remaining two runs (L3 = 0.67 and 0.75) are degraded relative to treatment peers but still above both control means. The hub-and-spoke topology trades ceiling for consistency.
 
-*Figure 5: L3 (Resolution Quality) per-run breakdown. Treatment-C achieves ≥ 0.88 in 5/8 runs---a level never reached by other cells except a single outlier (Control-C-7). Treatment-C also shows the highest variance, reflecting the bimodal outcome distribution of peer coordination.*
+*Figure 5: L3 (Resolution Quality) per-run breakdown. Treatment-C achieves ≥ 0.88 in 5/8 runs---a level never reached by other cells except a single outlier (Control-C-7). Treatment-C also shows the highest variance, with one clear failure (Treatment-C-5, L3 = 0.21) alongside five runs above 0.88.*
 
 ### 6.4 Blind Architectural Review
 
