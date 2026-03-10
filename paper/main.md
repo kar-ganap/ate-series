@@ -239,7 +239,7 @@ L2 (Conflict Identification) shows a *flat* gradient: the treatment advantage fo
 
 Figure 6 shows the per-run L3 scores. Treatment-C achieves L3 ≥ 0.88 in 5 of 8 runs, a level of resolution quality never observed in any other cell (except a single outlier, Control-C-7, at 1.00). Treatment-C runs 1--3 average 7.0 *Optimal* resolutions out of 8 conflicts, compared to 1--2 *Optimal* in Control cells.
 
-Treatment-C also exhibits the highest variance (SD 0.27 on L3). When peer coordination works well, it works exceptionally (L3 ≥ 0.88 in 5/8 runs). When it fails, output degrades below the control floor (runs 4--5: L3 = 0.67 and 0.21). The hub-and-spoke topology trades ceiling for consistency.
+Treatment-C also exhibits the highest variance (SD 0.27 on L3). When peer coordination works well, it works exceptionally (L3 ≥ 0.88 in 5/8 runs). One run (Treatment-C-5, L3 = 0.21) is a clear failure---four of eight conflicts scored "missing"---falling well below both control means (Control-A: 0.37, Control-C: 0.44). The remaining two runs (L3 = 0.67 and 0.75) are degraded relative to treatment peers but still above both control means. The hub-and-spoke topology trades ceiling for consistency.
 
 *Figure 5: L3 (Resolution Quality) per-run breakdown. Treatment-C achieves ≥ 0.88 in 5/8 runs---a level never reached by other cells except a single outlier (Control-C-7). Treatment-C also shows the highest variance, reflecting the bimodal outcome distribution of peer coordination.*
 
