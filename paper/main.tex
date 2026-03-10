@@ -244,7 +244,7 @@ Before designing the primary experiment, we conducted two preliminary
 studies on real-world software engineering tasks to test whether peer
 agents outperform subagents on code-level work. Both tasks were drawn
 from active open-source projects, and all patches were verified against
-existing test suites.
+existing test suites (\cref{tab:prelim}).
 
 \textbf{Experiment~1: Bug-fixing.}
 Eight bugs from the Ruff Python linter (Rust, 500K+ LOC) were selected
@@ -297,7 +297,8 @@ Experiment~3, which enforces information asymmetry by construction.
 \subsection{Research Question and Hypotheses}
 
 The preliminary experiments suggest that multi-agent quality advantage
-requires a structural condition absent in code-level tasks. We
+requires a structural condition absent in code-level tasks.
+Experiment~3 tests this hypothesis directly. We
 hypothesize that this condition is \emph{information asymmetry}: when
 agents hold non-overlapping information, cross-agent communication
 becomes necessary (not merely available) for high-quality synthesis.
@@ -316,8 +317,8 @@ inter-agent information transfer correlates with output quality.
 
 We designed a scenario (``DataFlow Corp'') in which a company must build
 a multi-region data platform spanning the US, EU, and APAC. Six
-stakeholders hold private constraint sheets containing hard constraints,
-preferences, and hidden dependencies. Stakeholders are simulated by
+stakeholders (\cref{tab:stakeholders}) hold private constraint sheets
+containing hard constraints, preferences, and hidden dependencies. Stakeholders are simulated by
 Claude Haiku 4.5 (temperature 0.2) and do not volunteer information
 unprompted---agents must ask specific questions to elicit requirements.
 
@@ -556,6 +557,7 @@ value than deepening each extreme.
   \end{tabular}
 \end{table}
 
+\Cref{tab:matrix} summarizes the experimental matrix.
 All 32 runs were conducted as interactive Claude Code sessions using
 Claude Opus 4.6 as the agent model. A 30-minute soft time cap was applied.
 Each run was self-contained with no cumulative state. Runs were executed
@@ -828,9 +830,9 @@ ceiling for consistency.
 
 \subsection{Blind Architectural Review}
 
-The blind review confirms the rubric's direction. Treatment documents
-score $23.9 \pm 2.2$ out of 30, compared to $22.3 \pm 1.2$ for
-control ($\Delta = +1.7$).
+The blind review confirms the rubric's direction (\cref{tab:blind}).
+Treatment documents score $23.9 \pm 2.2$ out of 30, compared to
+$22.3 \pm 1.2$ for control ($\Delta = +1.7$).
 
 \begin{table}[t]
   \caption{Blind review per-dimension means (1--5 scale).}
@@ -926,8 +928,8 @@ the advantage is \emph{topological}, not \emph{behavioral}:
     questions are not informed by the other subagent's findings.
 \end{enumerate}
 
-Three communication metrics provide mechanistic evidence for why
-the peer topology outperforms. \emph{Relay transparency} measures
+Three communication metrics (\cref{tab:comms}) provide mechanistic
+evidence for why the peer topology outperforms. \emph{Relay transparency} measures
 whether information from one agent's stakeholder interviews appears
 in the other agent's outputs, quantified as the cosine similarity
 between interview content embeddings and cross-agent statements.
@@ -988,8 +990,9 @@ described above likely operates in most or all treatment runs.
   \end{tabular}
 \end{table}
 
-Treatment runs take 60--75\% longer and involve roughly twice the
-stakeholder interviews. This additional process is the mechanism, not
+Treatment runs take 60--75\% longer (\cref{tab:process}) and involve
+roughly twice the stakeholder interviews. This additional process is
+the mechanism, not
 a confound: the peer topology enables a deeper exploration process
 (discovery $\to$ relay $\to$ informed follow-up $\to$ synthesis) that
 the hub-and-spoke architecture structurally cannot support.
