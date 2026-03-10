@@ -115,9 +115,10 @@ All three experiments share:
 
 ## Paper
 
-The full write-up is in [`paper/`](paper/): 15-page preprint covering all three
-experiments, statistical analysis, and a dual-evaluation methodology
-(rubric-based + blind architectural review).
+The full write-up is available as a [self-hosted preprint](paper/main.pdf): a 15-page paper
+covering all three experiments, statistical analysis, and a dual-evaluation
+methodology (rubric-based + blind architectural review). PDF, LaTeX source,
+and all raw data are included in this repository.
 
 ## Repository Links
 
