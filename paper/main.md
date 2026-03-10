@@ -282,9 +282,22 @@ Yet the treatment significantly outperforms the control. This implies the advant
 2. **Shared file context:** Both peer agents read and edit the same architecture document. Agent 2 can respond to Agent 1's contributions in real time, without the coordinator explicitly relaying them.
 3. **Iterative cross-pollination:** The coordinator relays findings between peers, and peers conduct follow-up stakeholder interviews informed by the other agent's discoveries. This creates a feedback loop absent in the control, where subagents' follow-up questions are not informed by the other subagent's findings.
 
-Relay transparency analysis supports this interpretation. Embedding similarity between an agent's original message and the coordinator's relay to the other agent ranges from 0.07 to 0.42 across treatment runs, indicating the coordinator actively synthesizes rather than transparently relays. The highest-performing Treatment-C runs (composite ≥ 0.93) have relay similarity of 0.24--0.42, while Treatment-A runs average 0.09---suggestive of a quality--fidelity relationship, though the sample is too small (*n* = 4) for statistical confirmation.
+Three communication metrics provide mechanistic evidence for why the peer topology outperforms. *Relay transparency* measures whether information from one agent's stakeholder interviews appears in the other agent's outputs, quantified as the cosine similarity between interview content embeddings and cross-agent statements. *Indirect collaboration* detects whether both agents read or modified the same file (from transcript file operations). *Message volume* counts coordinator-mediated messages per run.
 
-**Table 7. Process metrics by cell (mean ± SD).**
+**Table 7. Communication metrics for treatment cells.**
+
+| Cell        | Relay events | Mean similarity | Indirect collab. | Msg range |
+|-------------|-------------|-----------------|------------------|-----------|
+| Treatment-A | 3/8 runs    | 0.092           | 3/8 runs         | 2--13     |
+| Treatment-C | 4/8 runs    | 0.276           | 3/8 runs         | 3--12     |
+
+Treatment-C shows 3x higher relay similarity than Treatment-A (0.276 vs. 0.092), indicating that when cross-partition information is relayed in the high-cross condition, it is relayed with greater fidelity. The four Treatment-C runs with detected relay events are also the four highest-scoring runs in that cell (composite 0.93--1.00, relay similarity 0.10--0.42), suggestive of a quality--fidelity relationship though the sample (*n* = 4) precludes formal testing.
+
+Message volume does *not* predict quality: treatment-C-3 (5 messages, composite 1.00) outperforms treatment-A-7 (13 messages, composite 0.73). The advantage comes from what is relayed, not how much.
+
+Indirect collaboration detection rates are low (3/8 in both cells), but this likely underestimates the true rate: Agent Teams transcripts do not expose agent-level attribution for file operations, so all edits appear coordinator-level. The shared file context mechanism described above likely operates in most or all treatment runs.
+
+**Table 8. Process metrics by cell (mean ± SD).**
 
 | Cell        | Wall clock (min) | Interviews     | Peer msgs     | Unique pairs  |
 |-------------|-----------------|----------------|---------------|---------------|
