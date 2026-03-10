@@ -1,6 +1,6 @@
 # Information Asymmetry as a Structural Condition for Multi-Agent Advantage in Software Engineering Tasks
 
-**Kartik Ganapathi**\*
+**Kartik G Bhat**\*
 
 \*Independent Researcher. Contact: gkartik@gmail.com
 
