@@ -25,7 +25,7 @@ We focus on two topologies that represent the practical design space:
 
 This paper presents three experiments that progressively identify the structural condition under which peer agents outperform subagents. The first two experiments---bug-fixing in a 500K+ LOC Rust codebase and feature implementation in a Python ML framework---produce ceiling effects: both topologies achieve identical quality with zero inter-agent communication. These informative negatives reveal that when every agent can independently discover all necessary information, coordination adds no quality benefit beyond parallelism (speedups of 3.5--5.2x).
 
-The third experiment changes the structure. We design an architecture task where six LLM-simulated stakeholders hold private, non-overlapping requirements. Each agent interviews only its assigned stakeholders, creating *information asymmetry by construction*. Conflicts that span the agent boundary require cross-agent information transfer to resolve well. Under this condition, peer agents significantly outperform subagents (*d* = +0.99, *p* = 0.014), and the advantage for conflict resolution quality is 3.5x larger when 75% of conflicts cross the partition boundary compared to 25%.
+The third experiment changes the structure. We design an architecture task where six LLM-simulated stakeholders hold private, non-overlapping requirements. Each agent interviews only its assigned stakeholders, creating *information asymmetry by construction*. Conflicts that span the agent boundary require cross-agent information transfer to resolve well. Under this condition, peer agents significantly outperform subagents (*d* = +0.99, *p* = 0.014), and the advantage for conflict resolution quality is approximately 3.5x larger when 75% of conflicts cross the partition boundary compared to 25%.
 
 A surprising finding threads through all three experiments: agents never use direct peer messaging, despite the channel being available. All inter-agent information flow is coordinator-mediated. The treatment advantage arises from the *topology*---long-lived agents, shared file context, and iterative relay---not from explicit collaboration. This reframes the practical recommendation: design for information distribution, not communication protocols.
 
@@ -169,10 +169,10 @@ The composite score is the weighted sum: Composite = 0.25 · L1 + 0.25 · L2 + 0
 
 ### 5.2 Blind Architectural Review
 
-All 32 architecture documents were independently reviewed by Claude Opus 4.6 with zero knowledge of the rubric, ground truth, or experimental conditions. The reviewer scored each document on six dimensions using a 1--5 scale (total /30):
+All 32 architecture documents were independently reviewed by Claude Opus 4.6 with zero knowledge of the rubric, ground truth, or experimental conditions. The reviewer scored each document on six dimensions using a 1--5 scale (maximum 30):
 
 1. **Internal Consistency (IC):** Do component decisions compose without contradictions?
-2. **Specificity (SP):** Concrete technology choices vs. hand-wavy prose?
+2. **Specificity (SP):** Concrete technology choices vs. vague prose?
 3. **Buildability (BU):** Could an engineering team implement this as written?
 4. **Trade-off Depth (TD):** Quality of conflict reasoning?
 5. **Completeness (CO):** Operational concerns, edge cases, fallback strategies?
@@ -225,15 +225,15 @@ Table 5 decomposes the treatment effect by partition condition. If information a
 |-----------|-------------|-------------|----------|---------------|
 | Composite | +0.14       | +0.20       | +0.05    | 0.690         |
 | L2        | +0.28       | +0.23       | -0.05    | 0.887         |
-| L3        | +0.10       | +0.36       | +0.25    | 0.129†        |
+| L3        | +0.10       | +0.36       | +0.25    | 0.129‡        |
 
-Interaction *p* from 100,000-permutation test. † *p* < 0.15, directionally consistent with H2.
+Interaction *p* from 100,000-permutation test. ‡ *p* < 0.15, directionally consistent with H2.
 
-The L3 dose-response pattern is striking (Figure 5): the treatment advantage for resolution quality is 3.5x larger in Partition C (+0.36) than in Partition A (+0.10). The interaction term (*p* = 0.129) does not reach conventional significance at *n* = 8 per cell, but the gradient is monotonic and directionally consistent with H2. Power analysis suggests *n* ≈ 12--16 per cell would be needed to detect this interaction at α = 0.05.
+The L3 dose-response pattern is striking (Figure 5): the treatment advantage for resolution quality is approximately 3.5x larger in Partition C (+0.36) than in Partition A (+0.10). The interaction term (*p* = 0.129) does not reach conventional significance at *n* = 8 per cell, but the gradient is monotonic and directionally consistent with H2. Power analysis suggests *n* ≈ 12--16 per cell would be needed to detect this interaction at α = 0.05.
 
 L2 (Conflict Identification) shows a *flat* gradient: the treatment advantage for identifying conflicts is similar regardless of partition. This is consistent with the mechanism---both topologies can identify conflicts, but *resolving* cross-partition conflicts specifically benefits from the peer topology's information flow.
 
-*Figure 4: Dose-response gradient. The treatment advantage in L3 (Resolution Quality) is 3.5x larger in Partition C (high cross-partition conflict density) than in Partition A, consistent with an information-asymmetry mechanism.*
+*Figure 4: Dose-response gradient. The treatment advantage in L3 (Resolution Quality) is approximately 3.5x larger in Partition C (high cross-partition conflict density) than in Partition A, consistent with an information-asymmetry mechanism.*
 
 ### 6.3 Resolution Quality Breakdown
 
@@ -291,9 +291,9 @@ Three communication metrics provide mechanistic evidence for why the peer topolo
 | Treatment-A | 3/8 runs    | 0.092           | 3/8 runs         | 2--13     |
 | Treatment-C | 4/8 runs    | 0.276           | 3/8 runs         | 3--12     |
 
-Treatment-C shows 3x higher relay similarity than Treatment-A (0.276 vs. 0.092), indicating that when cross-partition information is relayed in the high-cross condition, it is relayed with greater fidelity. The four Treatment-C runs with detected relay events are also the four highest-scoring runs in that cell (composite 0.93--1.00, relay similarity 0.10--0.42), suggestive of a quality--fidelity relationship though the sample (*n* = 4) precludes formal testing.
+Treatment-C shows 3x higher relay similarity than Treatment-A (0.276 vs. 0.092), indicating that when cross-partition information is relayed in the high-cross condition, it is relayed with greater fidelity. The four Treatment-C runs with detected relay events are also the four highest-scoring runs in that cell (composite 0.93--1.00, relay similarity 0.10--0.42), suggestive of the quality--fidelity relationship predicted by H3, though the sample (*n* = 4) precludes formal testing.
 
-Message volume does *not* predict quality: treatment-C-3 (5 messages, composite 1.00) outperforms treatment-A-7 (13 messages, composite 0.73). The advantage comes from what is relayed, not how much.
+Message volume does *not* predict quality: Treatment-C-3 (5 messages, composite 1.00) outperforms Treatment-A-7 (13 messages, composite 0.73). The advantage comes from what is relayed, not how much.
 
 Indirect collaboration detection rates are low (3/8 in both cells), but this likely underestimates the true rate: Agent Teams transcripts do not expose agent-level attribution for file operations, so all edits appear coordinator-level. The shared file context mechanism described above likely operates in most or all treatment runs.
 
@@ -350,7 +350,7 @@ The distinction is not task difficulty. Architecture design is not inherently "h
 
 ## 8. Conclusion
 
-We conducted three experiments comparing symmetric peer agents against hub-and-spoke subagents on software engineering tasks. The first two experiments (bug-fixing and feature implementation) produced ceiling effects with zero inter-agent communication, establishing that code-level tasks with full information observability provide no structural advantage for peer coordination. The third experiment (architecture design with partitioned stakeholders) produced the first significant result: a large treatment effect (*d* = +0.99, *p* = 0.014) that scales with cross-partition conflict density (3.5x larger advantage at 75% cross-partition vs. 25%).
+We conducted three experiments comparing symmetric peer agents against hub-and-spoke subagents on software engineering tasks. The first two experiments (bug-fixing and feature implementation) produced ceiling effects with zero inter-agent communication, establishing that code-level tasks with full information observability provide no structural advantage for peer coordination. The third experiment (architecture design with partitioned stakeholders) produced the first significant result: a large treatment effect (*d* = +0.99, *p* = 0.014) that scales with cross-partition conflict density (approximately 3.5x larger advantage at 75% cross-partition vs. 25%).
 
 The most surprising finding is that agents never use direct peer messaging despite it being available. The treatment advantage arises from the topology's architectural properties: long-lived agents, shared file context, and coordinator-mediated iterative relay. This reframes the practical recommendation from "enable agent communication channels" to "design tasks with appropriate information distribution and use peer topologies for complex synthesis."
 
@@ -365,7 +365,7 @@ Code, data, and experiment protocols: https://github.com/kar-ganap/ate-series
 1. Wu, Q., Bansal, G., Zhang, J., Wu, Y., Li, B., Zhu, E., Jiang, L., Zhang, X., Zhang, S., Liu, J., et al. AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation. COLM, 2024.
 2. Hong, S., Zhuge, M., Chen, J., Zheng, X., Cheng, Y., Zhang, C., Wang, J., Wang, Z., Yau, S.K.S., Lin, Z., et al. MetaGPT: Meta Programming for A Multi-Agent Collaborative Framework. ICLR, 2024.
 3. Moura, J. CrewAI: Framework for Orchestrating Role-Playing, Autonomous AI Agents. https://github.com/crewAIInc/crewAI, 2023.
-4. Anthropic. Claude Code: Agent Teams. https://docs.anthropic.com/en/docs/claude-code, 2026.
+4. Anthropic. Claude Code: Agent Teams. https://code.claude.com/docs, 2026.
 5. Liu, X., Yu, H., Zhang, H., Xu, Y., Lei, X., Lai, H., Gu, Y., Ding, H., Men, K., Yang, K., et al. AgentBench: Evaluating LLMs as Agents. ICLR, 2024.
 6. Carlini, N. Building a C compiler with a team of parallel Claudes. https://www.anthropic.com/engineering/building-c-compiler, 2026.
 7. Zheng, L., Chiang, W.-L., Sheng, Y., Zhuang, S., Wu, Z., Zhuang, Y., Lin, Z., Li, Z., Li, D., Xing, E.P., et al. Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena. NeurIPS, 2023.

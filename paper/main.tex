@@ -74,6 +74,7 @@
 \newcommand{\deff}[1]{\ensuremath{d = #1}}
 \newcommand{\sig}{$^{*}$}
 \newcommand{\msig}{$^{\dagger}$}
+\newcommand{\dmsig}{$^{\ddagger}$}
 
 % ══════════════════════════════════════════════════════════════════
 \title{\textbf{Information Asymmetry as a Structural Condition\\[2pt]
@@ -166,7 +167,7 @@ creating \emph{information asymmetry by construction}. Conflicts that
 span the agent boundary require cross-agent information transfer to
 resolve well. Under this condition, peer agents significantly outperform
 subagents (\deff{+0.99}, \pval{0.014}), and the advantage for conflict
-resolution quality is 3.5$\times$ larger when 75\% of conflicts cross
+resolution quality is approximately 3.5$\times$ larger when 75\% of conflicts cross
 the partition boundary compared to 25\%.
 
 A surprising finding threads through all three experiments: agents never
@@ -645,13 +646,13 @@ $\text{Composite} = 0.25 \cdot L1 + 0.25 \cdot L2 + 0.30 \cdot L3 + 0.20 \cdot L
 All 32 architecture documents were independently reviewed by Claude
 Opus 4.6 with zero knowledge of the rubric, ground truth, or
 experimental conditions. The reviewer scored each document on six
-dimensions using a 1--5 scale (total /30):
+dimensions using a 1--5 scale (maximum 30):
 
 \begin{enumerate}
   \item \textbf{Internal Consistency (IC):} Do component decisions
     compose without contradictions?
   \item \textbf{Specificity (SP):} Concrete technology choices vs.\
-    hand-wavy prose?
+    vague prose?
   \item \textbf{Buildability (BU):} Could an engineering team implement
     this as written?
   \item \textbf{Trade-off Depth (TD):} Quality of conflict reasoning?
@@ -774,21 +775,21 @@ conflicts) than in Partition~A (25\%).
     \midrule
     Composite  & $+0.14$ & $+0.20$ & $+0.05$ & 0.690 \\
     L2         & $+0.28$ & $+0.23$ & $-0.05$ & 0.887 \\
-    L3         & $+0.10$ & $+0.36$ & $+0.25$ & 0.129\msig \\
+    L3         & $+0.10$ & $+0.36$ & $+0.25$ & 0.129\dmsig \\
     \bottomrule
   \end{tabular}
   \par\smallskip
   {\footnotesize Interaction $p$ from 100{,}000-permutation test.
-  \msig$p < 0.15$, directionally consistent with H2.}
+  \dmsig$p < 0.15$, directionally consistent with H2.}
 \end{table}
 
 The L3 dose-response pattern is striking (\cref{fig:dose-response}):
-the treatment advantage for resolution quality is 3.5$\times$ larger
-in Partition~C ($+0.36$) than
+the treatment advantage for resolution quality is approximately
+3.5$\times$ larger in Partition~C ($+0.36$) than
 in Partition~A ($+0.10$). The interaction term (\pval{0.129}) does
 not reach conventional significance at $n = 8$ per cell, but the
 gradient is monotonic and directionally consistent with H2. Power
-analysis suggests $n \approx 12$--16 per cell would be needed to
+analysis suggests $n \approx 12$--$16$ per cell would be needed to
 detect this interaction at $\alpha = 0.05$.
 
 L2 (Conflict Identification) shows a \emph{flat} gradient: the treatment
@@ -801,7 +802,7 @@ benefits from the peer topology's information flow.
   \centering
   \includegraphics[width=0.85\linewidth]{figures/dose_response.png}
   \caption{Dose-response gradient. The treatment advantage in L3
-    (Resolution Quality) is $3.5\times$ larger in Partition~C
+    (Resolution Quality) is approximately $3.5\times$ larger in Partition~C
     (high cross-partition conflict density) than in Partition~A,
     consistent with an information-asymmetry mechanism.}
   \label{fig:dose-response}
@@ -967,11 +968,12 @@ Treatment-C shows $3\times$ higher relay similarity than Treatment-A
 is relayed in the high-cross condition, it is relayed with greater
 fidelity. The four Treatment-C runs with detected relay events are
 also the four highest-scoring runs in that cell (composite 0.93--1.00,
-relay similarity 0.10--0.42), suggestive of a quality--fidelity
-relationship though the sample ($n = 4$) precludes formal testing.
+relay similarity 0.10--0.42), suggestive of the quality--fidelity
+relationship predicted by H3, though the sample ($n = 4$) precludes
+formal testing.
 
-Message volume does \emph{not} predict quality: treatment-C-3
-(5~messages, composite 1.00) outperforms treatment-A-7 (13~messages,
+Message volume does \emph{not} predict quality: Treatment-C-3
+(5~messages, composite 1.00) outperforms Treatment-A-7 (13~messages,
 composite 0.73). The advantage comes from what is relayed, not how
 much.
 
@@ -1106,7 +1108,7 @@ structural advantage for peer coordination. The third experiment
 (architecture design with partitioned stakeholders) produced the
 first significant result: a large treatment effect (\deff{+0.99},
 \pval{0.014}) that scales with cross-partition conflict density
-(3.5$\times$ larger advantage at 75\% cross-partition vs.\ 25\%).
+(approximately 3.5$\times$ larger advantage at 75\% cross-partition vs.\ 25\%).
 
 The most surprising finding is that agents never use direct peer
 messaging despite it being available. The treatment advantage arises
