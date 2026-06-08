@@ -231,9 +231,12 @@ organizations posits that coordination costs rise with task uncertainty
 and information distribution. Thompson's~\cite{thompson1967organizations}
 typology of interdependence (pooled, sequential, reciprocal) predicts
 that reciprocal interdependence---where agents must iteratively exchange
-information---demands the most coordination. Our experimental design
-operationalizes this by varying the proportion of conflicts that require
-cross-agent information.
+information---demands the most coordination. Malone and
+Crowston~\cite{malone1994interdependence} frame coordination as the
+management of dependencies among activities, providing the vocabulary
+for the dependency structures our experiments manipulate. Our
+experimental design operationalizes this by varying the proportion of
+conflicts that require cross-agent information.
 
 
 %═══════════════════════════════════════════════════════════════════
@@ -1136,7 +1139,22 @@ whether multi-agent coordination improves quality---provides a
 testable framework for guiding these investigations.
 
 %═══════════════════════════════════════════════════════════════════
-\bibliographystyle{plain}
+\section*{Data and Code Availability}
+%═══════════════════════════════════════════════════════════════════
+
+All data, code, and experiment protocols supporting the findings of this study are publicly available on GitHub.
+The umbrella repository containing the paper and cross-experiment analysis is at \url{https://github.com/kar-ganap/ate-series}.
+Individual experiment repositories contain raw run data (session transcripts, architecture documents, stakeholder constraint sheets), evaluation outputs (rubric scores, blind review scores), analysis scripts, and execution protocols:
+Experiment~1 (bug-fixing): \url{https://github.com/kar-ganap/ate};
+Experiment~2 (feature implementation): \url{https://github.com/kar-ganap/ate-features};
+Experiment~3 (architecture design): \url{https://github.com/kar-ganap/ate-arch}.
+The stakeholder simulation prompts and ground-truth rubrics used for evaluation are included in the Experiment~3 repository.
+
+\section*{Funding and Competing Interests}
+This research received no external funding. The author declares no competing interests. This work was conducted independently and is not affiliated with or sponsored by Anthropic or any other organization whose products are studied.
+
+%═══════════════════════════════════════════════════════════════════
+\bibliographystyle{unsrt}
 \bibliography{references}
 
 \end{document}
