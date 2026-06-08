@@ -33,6 +33,11 @@ Xiao Liu, Hao Yu, Hanchen Zhang, Yifan Xu, Xuanyu Lei, Hanyu Lai, Yu~Gu,
 \newblock Agentbench: Evaluating {LLMs} as agents.
 \newblock In {\em ICLR}, 2024.
 
+\bibitem{malone1994interdependence}
+Thomas~W. Malone and Kevin Crowston.
+\newblock The interdisciplinary study of coordination.
+\newblock {\em ACM Computing Surveys}, 26(1):87--119, 1994.
+
 \bibitem{mann1947test}
 Henry~B. Mann and Donald~R. Whitney.
 \newblock On a test of whether one of two random variables is stochastically
