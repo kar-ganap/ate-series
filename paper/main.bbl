@@ -1,25 +1,11 @@
 \begin{thebibliography}{10}
 
-\bibitem{anthropic2026agentteams}
-{Anthropic}.
-\newblock Claude code: Agent teams.
-\newblock \url{https://code.claude.com/docs}, 2026.
-
-\bibitem{anthropic2026ccompiler}
-Nicholas Carlini.
-\newblock Building a {C} compiler with a team of parallel {Claudes}.
-\newblock \url{https://www.anthropic.com/engineering/building-c-compiler},
-  2026.
-
-\bibitem{cohen1988statistical}
-Jacob Cohen.
-\newblock {\em Statistical Power Analysis for the Behavioral Sciences}.
-\newblock Lawrence Erlbaum Associates, 2nd edition, 1988.
-
-\bibitem{galbraith1974designing}
-Jay~R. Galbraith.
-\newblock Organization design: An information processing view.
-\newblock {\em Interfaces}, 4(3):28--36, 1974.
+\bibitem{wu2023autogen}
+Qingyun Wu, Gagan Bansal, Jieyu Zhang, Yiran Wu, Beibin Li, Erkang Zhu,
+  Li~Jiang, Xu~Zhang, Shaokun Zhang, Jiale Liu, et~al.
+\newblock Autogen: Enabling next-gen {LLM} applications via multi-agent
+  conversation.
+\newblock In {\em COLM}, 2024.
 
 \bibitem{hong2024metagpt}
 Sirui Hong, Mingchen Zhuge, Jonathan Chen, Xiawu Zheng, Yuheng Cheng, Ceyao
@@ -27,11 +13,45 @@ Sirui Hong, Mingchen Zhuge, Jonathan Chen, Xiawu Zheng, Yuheng Cheng, Ceyao
 \newblock Metagpt: Meta programming for a multi-agent collaborative framework.
 \newblock In {\em ICLR}, 2024.
 
+\bibitem{moura2023crewai}
+Jo\~{a}o Moura.
+\newblock Crewai: Framework for orchestrating role-playing, autonomous {AI}
+  agents.
+\newblock \url{https://github.com/crewAIInc/crewAI}, 2023.
+
+\bibitem{anthropic2026agentteams}
+{Anthropic}.
+\newblock Claude code: Agent teams.
+\newblock \url{https://code.claude.com/docs}, 2026.
+
 \bibitem{liu2023agentbench}
 Xiao Liu, Hao Yu, Hanchen Zhang, Yifan Xu, Xuanyu Lei, Hanyu Lai, Yu~Gu,
   Hangliang Ding, Kaiwen Men, Kejuan Yang, et~al.
 \newblock Agentbench: Evaluating {LLMs} as agents.
 \newblock In {\em ICLR}, 2024.
+
+\bibitem{anthropic2026ccompiler}
+Nicholas Carlini.
+\newblock Building a {C} compiler with a team of parallel {Claudes}.
+\newblock \url{https://www.anthropic.com/engineering/building-c-compiler},
+  2026.
+
+\bibitem{zheng2024judging}
+Lianmin Zheng, Wei-Lin Chiang, Ying Sheng, Siyuan Zhuang, Zhanghao Wu, Yonghao
+  Zhuang, Zi~Lin, Zhuohan Li, Dacheng Li, Eric~P. Xing, et~al.
+\newblock Judging {LLM}-as-a-judge with {MT-Bench} and chatbot arena.
+\newblock In {\em NeurIPS}, 2023.
+
+\bibitem{galbraith1974designing}
+Jay~R. Galbraith.
+\newblock Organization design: An information processing view.
+\newblock {\em Interfaces}, 4(3):28--36, 1974.
+
+\bibitem{thompson1967organizations}
+James~D. Thompson.
+\newblock {\em Organizations in Action: Social Science Bases of Administrative
+  Theory}.
+\newblock McGraw-Hill, 1967.
 
 \bibitem{malone1994interdependence}
 Thomas~W. Malone and Kevin Crowston.
@@ -44,29 +64,9 @@ Henry~B. Mann and Donald~R. Whitney.
   larger than the other.
 \newblock {\em Annals of Mathematical Statistics}, 18(1):50--60, 1947.
 
-\bibitem{moura2023crewai}
-Jo\~{a}o Moura.
-\newblock Crewai: Framework for orchestrating role-playing, autonomous {AI}
-  agents.
-\newblock \url{https://github.com/crewAIInc/crewAI}, 2023.
-
-\bibitem{thompson1967organizations}
-James~D. Thompson.
-\newblock {\em Organizations in Action: Social Science Bases of Administrative
-  Theory}.
-\newblock McGraw-Hill, 1967.
-
-\bibitem{wu2023autogen}
-Qingyun Wu, Gagan Bansal, Jieyu Zhang, Yiran Wu, Beibin Li, Erkang Zhu,
-  Li~Jiang, Xu~Zhang, Shaokun Zhang, Jiale Liu, et~al.
-\newblock Autogen: Enabling next-gen {LLM} applications via multi-agent
-  conversation.
-\newblock In {\em COLM}, 2024.
-
-\bibitem{zheng2024judging}
-Lianmin Zheng, Wei-Lin Chiang, Ying Sheng, Siyuan Zhuang, Zhanghao Wu, Yonghao
-  Zhuang, Zi~Lin, Zhuohan Li, Dacheng Li, Eric~P. Xing, et~al.
-\newblock Judging {LLM}-as-a-judge with {MT-Bench} and chatbot arena.
-\newblock In {\em NeurIPS}, 2023.
+\bibitem{cohen1988statistical}
+Jacob Cohen.
+\newblock {\em Statistical Power Analysis for the Behavioral Sciences}.
+\newblock Lawrence Erlbaum Associates, 2nd edition, 1988.
 
 \end{thebibliography}
